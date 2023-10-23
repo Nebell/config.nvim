@@ -4,13 +4,47 @@ return {
     -- event = 'VeryLazy',
     version = '2.*',
     config = function()
-        require 'window-picker'.setup()
+        local bg_color = '#42A5F5'
+        require 'window-picker'.setup({
+            -- whether to show 'Pick window:' prompt
+            show_prompt = false,
+
+            -- prompt message to show to get the user input
+            prompt_message = 'Pick window: ',
+
+            highlights = {
+                statusline = {
+                    focused = {
+                        fg = '#ededed',
+                        bg = '#e35e4f',
+                        bold = true,
+                    },
+                    unfocused = {
+                        fg = '#ededed',
+                        bg = bg_color,
+                        bold = true,
+                    },
+                },
+                winbar = {
+                    focused = {
+                        fg = '#ededed',
+                        bg = '#e35e4f',
+                        bold = true,
+                    },
+                    unfocused = {
+                        fg = '#ededed',
+                        bg = bg_color,
+                        bold = true,
+                    },
+                },
+            },
+        })
     end,
     keys = {
         {
             "gw",
             function()
-                local target_window_id = require('window-picker').pick_window(--[[ { hint = 'floating-big-letter' } ]])
+                local target_window_id = require('window-picker').pick_window( --[[ { hint = 'floating-big-letter' } ]])
                 if not target_window_id then
                     return
                 end
