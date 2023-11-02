@@ -1,8 +1,24 @@
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 
+local function nvim_tree_on_attach(bufnr)
+    local api = require "nvim-tree.api"
+
+    local function opts(desc)
+        return { desc = "nvim-tree: " .. desc, buffer = bufnr, noremap = true, silent = true, nowait = true }
+    end
+
+    -- default mappings
+    api.config.mappings.default_on_attach(bufnr)
+
+    -- custom mappings
+    vim.keymap.set('n', '<C-u>', api.node.show_info_popup, opts('Info'))
+    vim.keymap.set('n', '<C-k>', "15k", opts('Fallback'))
+end
+
 local function setup()
     require("nvim-tree").setup({
+        on_attach = nvim_tree_on_attach,
         sync_root_with_cwd = true,
         respect_buf_cwd = false,
         prefer_startup_root = true,
@@ -13,7 +29,15 @@ local function setup()
         },
         view = {
             width = 30,
-        }
+        },
+        filters = {
+            git_ignored = false,
+            dotfiles = false,
+            git_clean = false,
+            no_buffer = false,
+            custom = {},
+            exclude = {},
+        },
     })
 end
 
