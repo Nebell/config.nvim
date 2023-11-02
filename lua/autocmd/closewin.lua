@@ -33,18 +33,3 @@ vim.api.nvim_create_autocmd("QuitPre", {
     end
 })
 
-local M = {}
-
-function M.quit_flog_win()
-    vim.api.nvim_create_autocmd({ "FileType" }, {
-        pattern = "floggraph",
-        callback = function()
-            vim.api.nvim_buf_set_keymap(
-                0, "n", "q", "<CMD>close<CR>",
-                { noremap = true, silent = true }
-            )
-        end
-    })
-end
-
-return M
