@@ -14,7 +14,7 @@ local lazy_config = {
         missing = true,
     },
     change_detection = {
-        notify = true, -- get a notification when changes are found
+        notify = false, -- get a notification when changes are found
     }
 }
 
