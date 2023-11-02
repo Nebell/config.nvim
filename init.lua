@@ -12,6 +12,9 @@ local lazy_config = {
     },
     install = {
         missing = true,
+    },
+    change_detection = {
+        notify = true, -- get a notification when changes are found
     }
 }
 
@@ -38,3 +41,4 @@ require('keyset')
 
 -- require('autocmd')
 require('utils').source_files_from_dir(vim.fn.stdpath('config') .. "/lua/autocmd")
+
