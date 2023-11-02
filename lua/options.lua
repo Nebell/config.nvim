@@ -53,3 +53,6 @@ vim.opt.guifont = "Hack Nerd Font Mono:h14,CaskaydiaCove Nerd Font Mono:h14,Noto
 -- match
 vim.opt.showmatch = true
 vim.o.matchtime = 2
+
+-- highlight the row of the current cursor line
+vim.o.cursorline = true
