@@ -235,8 +235,7 @@ return {
             vim.keymap.set('i', '<m-o>', function() return vim.fn['codeium#Clear']() end, { silent = true, expr = true })
         end,
         keys = {
-            { '<Leader>ai', function() codeium_toggler:toggle() end, { 'n', 'v', 'i' },
-                { expr = true } },
+            { '<Leader>ai', function() codeium_toggler:toggle() end, { 'n', 'v' }, { expr = true } },
         }
     },
 }
