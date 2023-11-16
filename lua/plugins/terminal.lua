@@ -1,9 +1,9 @@
 local toggleterm_config = {
-    term_num = 0
+    term_num = 1
 }
 
 function toggleterm_config.switch_prev()
-    if toggleterm_config.term_num <= 0 then
+    if toggleterm_config.term_num <= 1 then
         return
     end
 
@@ -20,28 +20,29 @@ function toggleterm_config.switch_next()
     vim.cmd({ cmd = 'ToggleTerm', args = { tostring(toggleterm_config.term_num) } })
 end
 
+-- setup autocmd to make key bindings
 function toggleterm_config.setup_autocmd(self)
-    local opts = { silent = true, noremap = true }
-    -- vim.api.nvim_buf_set_keymap(0, 'n', '<C-h>', toggleterm_config.switch_prev, opts)
-    -- vim.api.nvim_buf_set_keymap(0, 'n', '<C-l>', toggleterm_config.switch_next, opts)
+    -- setup autocmd
+    vim.api.nvim_create_autocmd("FileType", {
+        pattern = "toggleterm",
+        callback = function()
+            local opts = { silent = true, noremap = true, buffer = true }
+            vim.keymap.set({ 'n', 'v', 't' }, '<C-h>', toggleterm_config.switch_prev, opts)
+            vim.keymap.set({ 'n', 'v', 't' }, '<C-l>', toggleterm_config.switch_next, opts)
+        end,
+    })
 end
 
 local keys = {
-    { "<C-T>",     "<CMD>ToggleTerm<CR>",            mode = { "i", "n", "v" }, { silent = true } },
-    { "<C-T>",     "<C-\\><C-n><CMD>ToggleTerm<CR>", mode = 't',               { silent = true } },
-    { "<ESC>",     "<C-\\><C-n>",                    mode = 't',               { silent = true } },
-
-    -- previous console
-    { "<Space>cp", toggleterm_config.switch_prev,    mode = { 'n' },           { silent = true, noremap = true }, desc = "switch previous console" },
-
-    -- next console
-    { "<Space>cn", toggleterm_config.switch_next,    mode = { 'n', },          { silent = true, noremap = true }, desc = "switch next console" }
+    { "<C-T>", "<CMD>ToggleTerm<CR>",            mode = { "i", "n", "v" }, { silent = true } },
+    { "<C-T>", "<C-\\><C-n><CMD>ToggleTerm<CR>", mode = 't',               { silent = true } },
+    { "<ESC>", "<C-\\><C-n>",                    mode = 't',               { silent = true } },
 }
 
 -- generate terminal keys
 for i = 1, 9, 1 do
     keys[#keys + 1] = {
-        string.format("<Space>c%d", i),
+        string.format("<M-%d>", i),
         function()
             -- store the number of term
             toggleterm_config.term_num = i
@@ -62,6 +63,8 @@ return {
         version = "*",
         opts = {
             direction = "float",
+            start_in_insert = false,
+            autochdir = true,
         },
         init = function()
             toggleterm_config.setup_autocmd()
@@ -69,3 +72,4 @@ return {
         keys = keys,
     }
 }
+
