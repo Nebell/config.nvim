@@ -291,10 +291,5 @@ return {
             },
         },
     },
-
-    {
-        "unblevable/quick-scope", -- Easy movement with 's' find 2 coincidenses
-        event = "BufReadPost",
-    },
 }
 
