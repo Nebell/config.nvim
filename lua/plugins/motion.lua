@@ -291,8 +291,4 @@ return {
             },
         },
     },
-    {
-        "vim-scripts/argtextobj.vim",
-        event = "BufReadPost",
-    }
 }
