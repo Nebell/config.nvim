@@ -229,8 +229,8 @@ local flash_config = {
             relative = "editor",
             width = 1, -- when <=1 it's a percentage of the editor width
             height = 1,
-            row = -1, -- when negative it's an offset from the bottom
-            col = 0, -- when negative it's an offset from the right
+            row = -1,  -- when negative it's an offset from the bottom
+            col = 0,   -- when negative it's an offset from the right
             zindex = 1000,
         },
     },
@@ -272,8 +272,8 @@ return {
         opts = {},
         -- stylua: ignore
         keys = {
-            {"f"},{"F"},{"t"},{"T"},
-            { "s", mode = { "n", "x", "o" }, function() require("flash").jump() end,   desc = "Flash" },
+            { "f" }, { "F" }, { "t" }, { "T" },
+            { "s", mode = { "n", "x", "o" }, function() require("flash").jump() end, desc = "Flash" },
             {
                 "S",
                 mode = { "o", "x" },
@@ -281,7 +281,7 @@ return {
                 desc =
                 "Flash Treesitter"
             },
-            { "r", mode = "o",               function() require("flash").remote() end, desc = "Remote Flash" },
+            { "r", mode = "o", function() require("flash").remote() end, desc = "Remote Flash" },
             {
                 "R",
                 mode = { "o", "x" },
@@ -291,4 +291,10 @@ return {
             },
         },
     },
+
+    {
+        "unblevable/quick-scope", -- Easy movement with 's' find 2 coincidenses
+        event = "BufReadPost",
+    },
 }
+
