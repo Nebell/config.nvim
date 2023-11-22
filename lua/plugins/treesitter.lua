@@ -50,8 +50,15 @@ local function setup()
     end
 
     require('utils').async_run(function()
+
+        -- compilers
+        local compilers = { vim.fn.getenv('CC'), "cc", "gcc", "clang", "cl", "zig" }
+        if vim.fn.has('win32') then
+            compilers = { "zig", "clang", vim.fn.getenv('CC'), "gcc" }
+        end
+
         require("nvim-treesitter.install").prefer_git = true
-        require 'nvim-treesitter.install'.compilers = { "clang", vim.fn.getenv('CC'), "gcc" }
+        require 'nvim-treesitter.install'.compilers = compilers
         require('nvim-treesitter.configs').setup(treesitter_config)
     end)
 end
