@@ -42,8 +42,9 @@ return {
         { "<Space>t", "<CMD>Telescope<CR>",                           mode = { "n", "v" },      { silent = true } },
         { "<C-P>",    "<CMD>Telescope find_files<CR>",                mode = { "n", "v", "i" }, { silent = true } },
         { "<Space>f", "<CMD>Telescope current_buffer_fuzzy_find<CR>", mode = { "n", "v" },      { silent = true } },
+        { "<Space>F", "<CMD>Telescope live_grep<CR>",                 mode = { "n", "v" },      { silent = true } },
         { "<Space>j", "<CMD>Telescope jumplist<CR>",                  mode = { "n", "v" },      { silent = true } },
         { "<Space>b", "<CMD>Telescope buffers<CR>",                   mode = { "n", "v" },      { silent = true } },
-        { "<Space>s", "<CMD>Telescope lsp_document_symbols<CR>",                   mode = { "n", "v" },      { silent = true } },
+        { "<Space>s", "<CMD>Telescope lsp_document_symbols<CR>",      mode = { "n", "v" },      { silent = true } },
     },
 }
