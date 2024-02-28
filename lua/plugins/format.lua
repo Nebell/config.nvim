@@ -15,7 +15,7 @@ return {
     opts = {
         -- Define your formatters
         formatters_by_ft = {
-            python = { "isort", "black" },
+            python = { "isort", "black", "ruff_fix", "ruff_format" },
             javascript = { { "prettierd", "prettier" } },
             json = { "jq" },
             protobuf = { "buf" },

@@ -2,7 +2,14 @@ local M = {}
 
 -- language servers
 local servers = {
-    pyright = {},
+    -- pip install "python-lsp-server[all]"
+    pylsp = {
+        plugins = {
+            pylint = {
+                enabled = false,
+            },
+        },
+    },
     lua_ls = {
         settings = {
             Lua = {
@@ -31,6 +38,7 @@ local servers = {
     gopls = {},
     hls = { filetypes = { 'haskell', 'lhaskell', 'cabal' } },
     racket_langserver = {},
+    zls = {},
 }
 
 -- Use an on_attach function to only map the following keys
